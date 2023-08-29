@@ -1,0 +1,40 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+
+{% block content %}
+<h1 class="text-2xl my-2">Cart</h1>
+
+    {% if cart|length %}
+    {% for item in cart %}
+    <div class="grid grid-cols-4 p-3 border">
+        <div class="col-start-1 col-end-2">
+            <p>{{ item.item.title }}</p>
+            <p>£{{ item.item.price }}</p>
+        </div>
+        <div class="col-start-4">
+            <div class="flex">
+                <a href="{% url 'change_quantity' item.item.id %}?action=increase" class="border rounded-lg pb-1 px-2 m-1">+</a>
+                <p class="mt-1">x{{ item.quantity }}</p>
+                <a href="{% url 'change_quantity' item.item.id %}?action=decrease" class="border rounded-lg pb-1 px-2 m-1">-</a>
+            </div>
+            <a href="{% url 'remove_from_cart' item.item.id %}" class="text-red-500 border rounded-lg pb-1 px-2">Remove from Cart</a>
+        </div>  
+    </div>   
+    {% endfor %}
+
+
+
+
+    <h3 class="font-bold">Total Cost: £{{ cart.get_total_cost }}</h3>
+
+    <hr class="my-4">
+
+    <a href="{% url 'checkout' %}" class="inline-block p-3 bg-blue-300">Checkout</a>
+    {% else %}
+    <h2>No items in Cart</h2>
+    {% endif %}
+{% endblock %}

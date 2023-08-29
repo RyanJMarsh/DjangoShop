@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    {{ item.title }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">{{ item.title }}</h1>
+
+    <p class="text-xs text-gray-500">
+        £{{ item.price }}
+        -
+        <a href="{% url 'vendor_detail' item.user.id %}">
+           {{ item.user.username }}
+        </a>
+        
+    </p>
+    {% if item.image %}    
+        <div class="image mb-2">
+            <img src="{{ item.image.url }}" alt="Image of {{ image.title }}">
+        </div>
+    {% endif %}
+
+    {% if item.description %}
+        <p>{{ item.description }}</p>
+    {% endif %}
+
+    <a href="{% url 'add_to_cart' item.id %}" class="inline-block p-6 border-solid border-2">Add to Cart</a>
+{% endblock %}

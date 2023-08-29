@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    My Items
+{% endblock %}
+
+{% block content %}
+
+<h1 class="text-2xl">{{ title }}</h1>
+
+<form method="post" action="." enctype="multipart/form-data" class="space-y-2">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button class="p-6 border-solid border-2 bg-green-300 active:bg-green-900">{{  title  }}</button>
+</form>
+
+{% if item %}
+    <a href="{% url 'delete_item' item.id %}" class="mt-3 inline-block p-6 border-solid border-2 bg-red-300 active:bg-red-900">Delete Item</a>
+{% endif %}
+
+{% endblock %}
