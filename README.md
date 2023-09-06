@@ -6,6 +6,8 @@ I decided to build this to get a better idea of how Django works as a framework,
 
 I also ended up using Stripe a little for the payment.
 
+The site is live on https://django-shop-dfbcb8db3bd2.herokuapp.com/
+
 ## Tech
 
 Django
