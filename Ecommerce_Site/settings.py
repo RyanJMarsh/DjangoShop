@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["django-shop.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 CART_SESSION_ID = 'cart'
 SESSION_COOKIE_AGE = 86400
