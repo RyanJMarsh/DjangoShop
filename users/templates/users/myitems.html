@@ -1,0 +1,84 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    My Items
+{% endblock %}
+
+{% block content %}
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="mt-5 px-8 py-4 bg-green-200">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+<h1 class="text-xl">My Orders</h1>
+
+<div class="flex flex-wrap">
+    <div class="w-1/4">
+        <strong>ID</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Title</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Quantity</strong>
+    </div>
+    <div class="w-1/4">
+        <strong>Price</strong>
+    </div>
+    
+</div>
+<hr>    
+    {% for order_item in order_items %}
+<div class="flex flex-wrap">
+    <div class="w-1/4">
+        <a href="{% url 'myitems_order_detail' order_item.order.id %}">{{ order_item.order.id }}</a>
+    </div>
+    <div class="w-1/4">
+        <p>{{ order_item.item.title }}</p>
+    </div>
+    <div class="w-1/4">
+        <p>{{ order_item.quantity }}</p>
+    </div>
+    <div class="w-1/4">
+        <p>{{ order_item.price }}</p>
+    </div>
+</div>  
+    {% endfor %}
+
+
+<hr>
+
+<a href="{% url 'add_item' %}" class="inline-block mt-6 py-4 px-8 bg-green-500">Add New Item</a>
+
+<h1 class="text-xl">My Items</h1>
+
+{% if items %}
+    <div class="flex flex-wrap">
+        {% for item in items %}
+            <div class="p-2 w-1/3">
+                <a href="{% url 'edit_item' item.pk %}">
+                <div class="p-3 bg-slate-300">
+                    {% if item.image %}    
+                        <div class="image mb-2">
+                            <img src="{{ item.image.url }}" alt="Image of {{ image.title }}">
+                        </div>
+                    {% endif %}
+                        <h2 class="text-xl">{{ item.title }}</h2>
+                        <h4 class="text-base text-gray-700">{{ item.category }}</h4>
+                        <h3 class="text-base text-gray-500">£{{ item.price }}</h3>
+                        <hr class="my-3">
+                        <p><strong>Status: </strong>{{ item.get_status_display }}</p>
+                    </div>
+                </a>                                
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>You don't have any products to sell yet</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    My Account
+{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+    <h1 class="text-2xl">My Account - {{user.username}}</h1>
+    
+    <p>Name: {{ user.get_full_name }}</p>
+    <p>username: {{user.username}}</p>
+    
+    <a href="{% url 'logout' %}" class="inline-block p-2 bg-red-500">Log Out</a>
+
+
+</div>
+
+
+{% endblock %}

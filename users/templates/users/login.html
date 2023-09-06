@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block content %}
+    <h1 class="text-2xl">Log In</h1>
+
+    <form method="post" action=".">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button class="inline-block mt-4 p-6 border-solid border-2 hover:bg-green-300 active:bg-green-900">Log in</button>
+    </form>
+{% endblock %}
